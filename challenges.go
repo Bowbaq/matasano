@@ -94,7 +94,14 @@ func challenge_1_7() {
 	assert_equal(output, ecb_decrypt(ciphertext, key))
 }
 
-// See 1-8.go
+func challenge_1_8() {
+	for l, line := range lines_in_file("inputs/1-8.txt") {
+		if is_ecb(from_base64(line)) {
+			fmt.Println("Line", l, "is ECB encoded")
+			return
+		}
+	}
+}
 
 func challenge_2_9() {
 	assert_equal("YELLOW SUBMARINE\x04\x04\x04\x04", string(pcks_pad([]byte("YELLOW SUBMARINE"), 20)))

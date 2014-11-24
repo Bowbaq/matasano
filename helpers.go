@@ -171,6 +171,24 @@ func ecb_encrypt(plaintext, key []byte) []byte {
 	return ciphertext
 }
 
+func ecb_count(ciphertext []byte) (ecb_count int) {
+	blocks := split_blocks(ciphertext, 16)
+
+	for i, b1 := range blocks {
+		for _, b2 := range blocks[i+1:] {
+			if bytes.Equal(b1, b2) {
+				ecb_count++
+			}
+		}
+	}
+
+	return ecb_count
+}
+
+func is_ecb(ciphertext []byte) bool {
+	return ecb_count(ciphertext) > 0
+}
+
 // CBC AES
 func cbc_decrypt(ciphertext, key, iv []byte) []byte {
 	cipher, _ := aes.NewCipher(key)
