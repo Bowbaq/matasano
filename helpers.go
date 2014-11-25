@@ -75,17 +75,9 @@ func find_single_char_xor(input []byte) (string, byte, int) {
 const freqs = "zqxjkvbpygfwmucldrhs nioate"
 
 func english_score(text string) int {
-	text = strings.ToLower(text)
-
-	score := 0
-	for _, c := range text {
-		index := strings.Index(freqs, string(c))
-
-		if index > 0 {
-			score += index
-		} else {
-			score -= 10
-		}
+	var score int
+	for _, c := range strings.ToLower(text) {
+		score += strings.Index(freqs, string(c))
 	}
 
 	return score

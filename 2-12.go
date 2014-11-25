@@ -31,7 +31,6 @@ func challenge_2_12() {
 	}
 
 	known = pcks_unpad(known[block_size:], block_size)
-
 	assert_equal(suffix, known)
 }
 
