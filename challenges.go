@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-var challenges_names = []string{"1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "2.9", "2.10", "2.11", "2.12"}
+var challenges_names = []string{"1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "2.9", "2.10", "2.11", "2.12", "2.13", "2.14"}
 var challenges = map[string]func(){
 	"1.1":  challenge_1_1,
 	"1.2":  challenge_1_2,
@@ -22,6 +22,8 @@ var challenges = map[string]func(){
 	"2.10": challenge_2_10,
 	"2.11": challenge_2_11,
 	"2.12": challenge_2_12,
+	"2.13": challenge_2_13,
+	"2.14": challenge_2_14,
 }
 
 func main() {
@@ -122,3 +124,5 @@ func challenge_2_10() {
 // See 2-11.go
 
 // See 2-12.go
+
+// See 2-13.go

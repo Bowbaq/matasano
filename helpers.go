@@ -181,6 +181,28 @@ func is_ecb(ciphertext []byte) bool {
 	return ecb_count(ciphertext) > 0
 }
 
+func find_ecb_block_size(ecb_oracle func(data []byte) []byte) int {
+	var (
+		last_ecb_len   int
+		last_ecb_count int
+		needle         []byte
+	)
+
+	for {
+		needle = append(needle, byte('A'))
+		if count := ecb_count(ecb_oracle(needle)); count > last_ecb_count {
+			if last_ecb_count == 0 {
+				last_ecb_count = count
+				last_ecb_len = len(needle)
+			} else {
+				return len(needle) - last_ecb_len
+			}
+		}
+	}
+
+	return -1
+}
+
 // CBC AES
 func cbc_decrypt(ciphertext, key, iv []byte) []byte {
 	cipher, _ := aes.NewCipher(key)
